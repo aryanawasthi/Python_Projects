@@ -1,0 +1,11 @@
+verb=input("Verb:")
+adj1=input("Adjective1")
+adj2=input("Adjective2")
+fam_per=input("Famous Person Name: ")
+# here we use f struing to give values in our string ,it is very good method when you are taking input from user and simply putting the values in our string
+matlib=f"I like to {verb}.I am very passionate about {adj1}. I want to do things with {adj2}. You can also be a {fam_per}."
+# Next type  of formatting when we only put brackets and have multiple values which we can give after wards\
+next_format="I like to do {}. I am {} passionate. You can become {},and also be like {}".format("running","very",'most',"aryan")
+
+
+print(next_format)
