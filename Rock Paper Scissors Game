@@ -1,0 +1,33 @@
+# importing the random module
+import random
+# defining a play function
+def play():
+    # taking the user input by giving choices such as s for scissors, p for paper and r for rock
+    user_input=input("What is your choice? r for rock, s for scissors and p for paper: ").lower()
+    # if user input is between the following given choices
+    if user_input in ("r","p","s"):
+        # generating computer choice using choice instance of random module it takes input a list, a tuple or array and gives one value at a time.
+        comp=random.choice(["r","p","c"])
+        # if user input is equal to comp then the game is tied
+        if user_input==comp:
+            return "Tie"
+         # chekcing whether the user won or not defining another function is won who gives True if user wons and we will return user won!
+        if iswon(user_input,comp):
+            return "Congrats! You won"
+        # returning user lost
+        else:
+      
+            return "You Lost"
+    # if user input is not in our selected choices then asking again for the inputs
+    else:
+        return "Incorrect String choice please select r for rock , s for scissor and p for paper"
+# auxillary function to return who won       
+def iswon(user,comp):
+    # using the below constrainsts selecting wheter the user won or not
+    #r>s, s>p and p>r
+    if (user=="r" and comp=="s") or (user=="s" and comp=="p") \
+    or (user=="p" and comp=="r"):
+        return True
+    else:
+        return False
+play()
