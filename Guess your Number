@@ -1,0 +1,116 @@
+# importing the random library
+import random
+# defining a guess function
+def guess():
+    # taking a user input as we want integer so added  int filter with it and storing it in user_inpt
+    user_input=int(input("Please enter a number betwenn 1 to 100: "))
+    # checking the condiion that our user input lies betweeen 1 to 100
+    if 1<user_input and user_input<100:
+        # taking the computer input using randint function
+        comp_input=random.randint(1,100)
+        # if both the values are equal return the output
+        if user_input==comp_input:
+            print(f"Congrats! you both guessed the same number {comp_input}")
+        # if the values are not equal then return that values are not equal
+        else:
+           
+            print(f"Oops! failed you guessed {user_input} and computer guessed {comp_input}")
+    # if the values are not in range of 1 to 100 return out of the function
+    else:
+        print(f"Your input {user_input} is not in range of 1 to 100. Please try again")
+        
+# calling the function        
+#guess()
+    
+    
+# in our previous guess function we are giving just one call what if we want to make multiple calls inside the function and user subscribed to number of calls lets build that function.
+# defining a guess multiple function which takes n input which defines the number of attempts user has
+def guess_multiple(n):
+    # initializing the loop with count as 0
+    count=0
+    # iterates the loop until count<n
+    while(count<n):
+        # taking the user_input
+        user_input=int(input("Please eneter a number betwenn 1 to 100: "))
+        # check is a user_input is in the range of 1 to 100
+        if user_input>1 and user_input<100:
+            # if a user_input satisfies the condition then find the comp_input
+            comp_input=random.randint(1,100)
+            # if a user_input is equal to comp_input then return the results
+            if user_input==comp_input:
+                print(f"Hurray! you both guessed it {user_input}")
+            # if the values is smaller than comp_input then we return the results
+            elif user_input<comp_input:
+                print(f"Your guessed value {user_input} is smaller than computer guessed value which is {comp_input}")
+            #if the values is smaller than comp_input then we return the results
+            else:
+                print(f"Your guessed value {user_input} is greater than computer guessed value which is {comp_input}")
+        # if the user value is not in range f 1 to 100.
+        else:
+            print(f"Your value {user_input} is not in range 1 to 100")
+        # increase the value of count
+        count=count+1
+
+        
+# call the function          
+#guess_multiple(10)
+
+# now we will allow computer to play this game and we can guess that whether our output or input is high or low:
+# The game is written for the user end .
+def guess_num(x):
+    random_number=random.randint(1,x)
+    guess=0
+    while(guess!=random_number):
+        guess=int(input(f"Please enter a number in the range of 1 to {x}: "))
+        if guess>1 and guess<x:
+            
+            if guess<random_number:
+                print("Oops! Try again too low")
+            elif guess>random_number:
+                print("Oops! Try again too high")
+        else:
+            print(f"Please! input a number between 1 to {x}")
+    print("Hurray! you guessed the number correctly")
+    
+    
+# in this program we give our computer a range of  x from which we select a number and computer will try to guess the number using tour feedback
+def computer_guess(x):
+    # defining two limiting values as lo and hi
+    lo=1
+    hi=x
+    # here we have feeback that guessed value by computer is high or low or correct
+    feedback=""
+    # iterates the loop untill feedback received is correct or "c"
+    while feedback!="c":
+        # removing the edge case becused randint function will return error therfore eding the cases . If lo and high values are not equal find a number between lo and hi values.
+        if lo!=hi:
+            # finding a random number between lo and hi
+            guess=random.randint(lo,hi)
+        # if both values are equal then use any of the value as lo or high
+        else:
+            guess=lo
+            # as low=high
+        # check for the user input as if our guessed number is low ,high or correct
+        feedback=input(f"Is guessed {guess}, Too High (h), Too low l , or correct c: ").lower()
+        
+        # if the feedback is higher it means we have to change our upper bound to guess-1
+        if feedback=="h":
+            
+            hi=guess-1
+            
+        # if the feedback is l then we have to change our lower bound as guess+1
+        if feedback=="l":
+            lo=guess+1
+    # if the feedback is c then we will print that guess is correct       
+    print(f"Hurray! You guess secret Number correctly which is {guess}")
+        
+        
+        
+computer_guess(10)
+            
+
+
+
+            
+        
+    
