@@ -1,0 +1,78 @@
+# as inbuilt sum function  takes only 2 parameter but we require sum 0f 3 values so we redefine it
+def sum(a,b,c):
+    
+    return a+b+c
+
+
+# printing the board taking xState and zState which both are 0*8 1D arrays and using the f string formatting insert the updated value in the dashboard and then again print the board.
+def printBoard(xState,zState):
+    # using the conditional stateements  of pyton we will first check xState[0] which means the value of xState at index 0 if it is one then print "X" else check in zState at 0 index is 1 then print 0 or else print the index number which is 0
+    zero= "X" if xState[0] else ("0" if zState[0] else 0)
+    one = "X" if xState[1] else ("0" if zState[1] else 1)
+    two = "X" if xState[2] else ("0" if zState[2] else 2)
+    three = "X" if xState[3] else ("0" if zState[3] else 3)
+    four = "X" if xState[4] else ("0" if zState[4] else 4)
+    five = "X" if xState[5] else ("0" if zState[5] else 5)
+    six = "X" if xState[6] else ("0" if zState[6] else 6)
+    seven = "X" if xState[7] else ("0" if zState[7] else 7)
+    eight = "X" if xState[8] else ("0" if zState[8] else 8)
+    # now substitute all the variables in the dashboard
+    print(f"{zero}|{one}|{two}")
+    print(f"-|-|-")
+    print(f"{three}|{four}|{five}")
+    print(f"-|-|-")
+    print(f"{six}|{seven}|{eight}")
+# to check whther someone has won or not by comparing the values at xState and yState.    
+def checkwin(XState,yState):
+    # what are the possible cases for win for x is when x has acquired positions such as [0,3,6],[1,4,7],[2,5,8],[0,1,2],[3,4,5],[6,7,8],[ 0,4,8],[2,4,6]
+    wins=[[0,3,6],[1,4,7],[2,5,8],[0,1,2],[3,4,5],[6,7,8],[0,4,8],[2,4,6]]
+    # we have nested list as list then we have win as [0,3,6] then we will check the value of xState at index win[0] a, win[3] and win[6] then we will add them if it sum is 3 which means x won otherwise check for zState and if is is also not equal to  1 then continue the loop.
+    for win in wins:
+        if (sum(xState[win[0]],xState[win[1]],xState[win[2]]))==3:
+            print("X won the match")
+            return 1
+        # checking the sum condition
+        if (sum(zState[win[0]],zState[win[1]],zState[win[2]]))==3:
+            print("O wins the match")
+            return 0
+            
+        # if no won wins then return -1
+        return -1
+            
+            
+    
+if __name__=="__main__":
+    #
+    xState=[0 for i in range(9)]
+    zState=[0 for i in range(9)]
+    turn=1
+    print("Welcome to Tic Tac Toe")
+    # loop will run until it is  breaked 
+    while(True):
+        # prining the board taking input as xState and zState
+        printBoard(xState,zState)
+        # if turn is 1 give the chance to x 
+        if turn==1:
+            print("X Chance")
+            # taking the user input
+            value=int(input("Please enter a value: "))
+            # setting value of x state at index which is selectted by user as 1
+            xState[value]=1
+        # give chance to 0
+        else: # xero's chance
+        
+            print("Zero Chance")
+            # taking the input from the 0's game
+            value=int(input("Plese enter a value: "))
+            # setting the value in zState which is selected by user
+            zState[value]=1
+        # checking the winnner and if there is a winner which will return 1 for "X" and "0" for 0 then it will not return -1 which  and if it is not -1 break the loop and return Game over
+        cwin=checkwin(xState,zState)
+        if cwin!=-1:
+            print("Game Over")
+            break
+        # for giving chances to X and 0 when turn=1 then X chance and after x's change 1-turn =0 which will give chance to 0 
+            
+        turn=1-turn
+            
+        
